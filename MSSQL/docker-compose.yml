@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Psw123456@ # mssql require strong password to connect
+      
+volumes:
+  sqlvolume:
+
+# /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'Psw123456@'
+# SELECT Name from sys.databases;
+# GO
+### ^^^^^ stupiest thing ever
